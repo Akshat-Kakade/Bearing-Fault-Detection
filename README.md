@@ -1,5 +1,16 @@
 # Bearing Fault Detection via Vibration Signal Analysis
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![NumPy](https://img.shields.io/badge/numpy-%23013243?logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/scipy-%230C55A5?logo=scipy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/matplotlib-%23ffffff?logo=plotly&logoColor=black)
+![Tests](https://img.shields.io/badge/tests-pytest-green)
+
+<p align="center">
+  <img src="figures/fig06_envelope_spectrum.png" width="85%" alt="Envelope spectrum showing the BPFO peak and harmonics">
+  <br><em>The fault revealed: BPFO (≈ 89.6 Hz) and its harmonics in the envelope spectrum.</em>
+</p>
+
 **Course:** Digital Signal Processing (MTE 3121) · **Case study:** Vibration Signal Analysis
 for Machine Fault Detection — bearing outer-race fault in a motor. Simulation-based, Python only.
 
@@ -66,8 +77,32 @@ Theoretical BPFO is 89.62 Hz. Across the Monte Carlo sweep, both pipelines reach
 detection from about -12 dB input SNR, while the raw spectrum never detects the fault.
 LMS suppresses the mains hum by about 3.4 dB (variance reduction).
 
-![Envelope spectrum](figures/fig06_envelope_spectrum.png)
-![Detection rate vs SNR](figures/fig09_detection_rate.png)
+### Detection rate vs input SNR
+
+<p align="center">
+  <img src="figures/fig09_detection_rate.png" width="75%" alt="Detection rate vs SNR">
+</p>
+
+| SNR (dB) | -20 | -18 | -16 | -14 | -12 | -10 | 0 |
+|---|---|---|---|---|---|---|---|
+| Raw | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
+| FIR | 0.00 | 0.04 | 0.48 | 0.94 | 1.00 | 1.00 | 1.00 |
+| IIR | 0.00 | 0.04 | 0.52 | 0.88 | 1.00 | 1.00 | 1.00 |
+
+### Gallery
+
+<table>
+  <tr>
+    <td align="center"><img src="figures/fig02_raw_fft.png" alt="Raw FFT"><br><sub><b>Raw FFT</b> – the fault is invisible</sub></td>
+    <td align="center"><img src="figures/fig04_fir_vs_iir.png" alt="FIR vs IIR"><br><sub><b>FIR vs IIR</b> – magnitude, phase, group delay, pole-zero</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="figures/fig07_spectrogram.png" alt="Spectrogram"><br><sub><b>Spectrogram</b> – periodic impacts excite the resonance</sub></td>
+    <td align="center"><img src="figures/fig08_lms.png" alt="LMS adaptive filter"><br><sub><b>LMS</b> – hum suppression across step sizes</sub></td>
+  </tr>
+</table>
+
+All ten figures are in [`figures/`](figures/).
 
 ## 4. Project layout
 
